@@ -1,0 +1,36 @@
+language: java
+jdk:
+- oraclejdk8
+before_install:
+  - chmod +x mvnw
+install: true
+services:
+  - docker
+script: ./mvnw clean install -Pbuild-resource -DskipTests=true -Ddocker.image.prefix=ashraf1abdelrasool -Dorg.revo.env.staticcloudfrontendpoint=dmjkki5issj2q.cloudfront.net
+
+cache:
+  directories:
+  - $HOME/.m2
+after_success:
+  - rm -r -f src/main/resources/ui-static/node
+  - rm -r -f src/main/resources/ui-static/node_modules
+  - rm -r -f target
+  - docker login -u="ashraf1abdelrasool" -p="01120266849";
+  - docker push ashraf1abdelrasool/zuul;
+  - git add .
+  - git add -f src/main/resources/static/
+  - git commit -m "push zuul"
+deploy:
+ - provider: s3
+   access_key_id: "AKIAJ4T723LWLEBYKQ3A"
+   secret_access_key: "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"
+   bucket: "static-asrevo-bucket"
+   region: us-east-1
+   upload-dir: zuul
+   acl: public_read
+#   provider: cloudfoundry
+#   username: $username
+#   password: $password
+#   api: https://api.run.pivotal.io
+#   organization: ashraf2revo
+#   space: development

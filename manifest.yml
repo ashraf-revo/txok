@@ -1,0 +1,9 @@
+---
+applications:
+- name: txok
+  memory: 1GB
+  instances: 1
+  routes:
+    - route: txok.asrevo.me
+  buildpack: java_buildpack
+  path: target/txok-0.0.1-SNAPSHOT.jar

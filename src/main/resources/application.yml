@@ -1,0 +1,14 @@
+logging:
+  file: file.log
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+org:
+  revo:
+    env:
+      users:
+      - email: revo
+        password: '{bcrypt}$2a$10$55ftqk9N02sq/qFv57HAZO/JgynR2Mg75u05pkMceVAQbvTMXsUI2'
+        username: revo
