@@ -23,9 +23,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <docker.image.prefix>ashraf1abdelrasool</docker.image.prefix>
-        <org.revo.env.staticcloudfrontendpoint>
-            https://example.com/txok/src/main/resources/static
-        </org.revo.env.staticcloudfrontendpoint>
+        <!--<org.revo.env.staticcloudfrontendpoint>https://example.com/${project.artifactId}/src/main/resources/static/</org.revo.env.staticcloudfrontendpoint>-->
+        <org.revo.env.staticcloudfrontendpoint></org.revo.env.staticcloudfrontendpoint>
     </properties>
 
     <dependencies>
@@ -106,7 +105,7 @@
                                     <arguments>
                                         run build --
                                         --prod
-                                        --deploy-url= ${org.revo.env.staticcloudfrontendpoint}
+                                        --deploy-url=${org.revo.env.staticcloudfrontendpoint}
                                     </arguments>
                                 </configuration>
                             </execution>
