@@ -9,6 +9,19 @@ org:
   revo:
     env:
       users:
-      - email: revo
+      - email: revo1
+        username: revo1
+        type: '100'
         password: '{bcrypt}$2a$10$55ftqk9N02sq/qFv57HAZO/JgynR2Mg75u05pkMceVAQbvTMXsUI2'
-        username: revo
+      - email: revo2
+        username: revo2
+        type: '010'
+        password: '{bcrypt}$2a$10$55ftqk9N02sq/qFv57HAZO/JgynR2Mg75u05pkMceVAQbvTMXsUI2'
+      - email: revo3
+        username: revo3
+        type: '001'
+        password: '{bcrypt}$2a$10$55ftqk9N02sq/qFv57HAZO/JgynR2Mg75u05pkMceVAQbvTMXsUI2'
+spring:
+  data:
+    mongodb:
+      database: txok

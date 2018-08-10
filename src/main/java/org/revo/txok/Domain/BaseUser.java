@@ -16,13 +16,13 @@ public abstract class BaseUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<String> roles = new ArrayList<>();
-        if (type.charAt(0) == '1') {
-            roles.add("ROLE_USER");
+        if (getType().charAt(0) == '1') {
+            roles.add("ROLE_STUDENT");
         }
-        if (type.charAt(1) == '1') {
-            roles.add("ROLE_MEDIA");
+        if (getType().charAt(1) == '1') {
+            roles.add("ROLE_TEACHER");
         }
-        if (type.charAt(2) == '1') {
+        if (getType().charAt(2) == '1') {
             roles.add("ROLE_ADMIN");
             roles.add("ROLE_ACTUATOR");
         }
@@ -47,5 +47,13 @@ public abstract class BaseUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -1,9 +1,9 @@
 package org.revo.txok.Domain;
 
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@ToString
 public class User extends BaseUser {
     @Id
     private String id;

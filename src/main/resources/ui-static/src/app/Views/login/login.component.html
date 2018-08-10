@@ -1,1 +1,6 @@
 <a [routerLink]="['/','home']">home</a>
+<form>
+  <input type="text" name="user.username" [(ngModel)]="user.username">username
+  <input type="password" name="user.password" [(ngModel)]="user.password">password
+  <input type="submit" (click)="login()">save
+</form>

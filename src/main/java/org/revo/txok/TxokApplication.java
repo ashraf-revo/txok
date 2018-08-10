@@ -1,13 +1,16 @@
 package org.revo.txok;
 
 import org.revo.txok.Config.Env;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.server.*;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
@@ -22,13 +25,19 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @EnableMongoAuditing
 public class TxokApplication {
 
+    private final RequestPredicate or = GET("/").or(GET("/home").or(GET("/login")));
+
     public static void main(String[] args) {
         SpringApplication.run(TxokApplication.class, args);
     }
 
 
     @Bean
-    public RouterFunction<ServerResponse> function() {
-        return route(GET("/api/userId"), serverRequest -> ok().body(fromObject(UUID.randomUUID().toString())));
+    public RouterFunction<ServerResponse> function(@Value("classpath:/static/index.html") final Resource indexHtml) {
+        return route(GET("/api/userId"), serverRequest -> ok().body(fromObject(UUID.randomUUID().toString())))
+                .andRoute(or, request -> ok().contentType(MediaType.TEXT_HTML).syncBody(indexHtml))
+                ;
     }
+
+
 }
