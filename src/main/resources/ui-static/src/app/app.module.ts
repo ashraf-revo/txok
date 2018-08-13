@@ -11,7 +11,7 @@ import {DashBoardComponent} from './Views/dash-board/dash-board.component';
 import {DefaultService} from './Services/default.service';
 import {AuthService} from './Services/auth.service';
 import {UserService} from './Services/user.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
@@ -24,6 +24,10 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule, HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'X-CSRF-TOKEN',
+      headerName: 'X-CSRF-TOKEN',
+    }),
     FormsModule, RouterModule.forRoot(routes)
   ],
   providers: [DefaultService, AuthService, UserService],

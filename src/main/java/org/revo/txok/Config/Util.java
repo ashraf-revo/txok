@@ -14,9 +14,5 @@ public class Util {
                     .flatMapMany(it -> userService.save(env.getUsers())).subscribe();
         };
     }
-    @Bean
-    public CookieServerCsrfTokenRepository csrfTokenRepository() {
-        return new CookieServerCsrfTokenRepository();
-    }
 
 }
