@@ -21,7 +21,6 @@ public class Security {
 
     @Bean
     public SecurityWebFilterChain webFilterChain(ServerHttpSecurity http) {
-
         http
                 .authorizeExchange()
 
