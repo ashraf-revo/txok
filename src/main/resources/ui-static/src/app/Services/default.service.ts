@@ -8,7 +8,8 @@ import {AuthService} from './auth.service';
 export class DefaultService {
   public url = '';
   private _lastRoute: NavigationEnd = null;
-  private protectedUrl: string[] = ['home'];
+  private protectedUrl: string[] = ['home','account','profile'];
+  private unProtectedUrl: string[] = ['','login','signup'];
 
   constructor() {
   }
@@ -21,12 +22,14 @@ export class DefaultService {
     if (authService.getAuthUser().isAuth == null) {
       return true;
     }
-    else if(authService.getAuthUser().isAuth != null&&this._lastRoute.url==='/login'&& authService.getAuthUser().isAuth === 'true')
+    else if(this._lastRoute!=null&&authService.getAuthUser().isAuth != null&&this.unProtectedUrl.indexOf(this._lastRoute.url.split('/')[1]) !== -1&& authService.getAuthUser().isAuth === 'true')
     {
+      console.log("i route it " +this._lastRoute.url);
       router.navigate(['/', 'home']);
       return false;
     }
-    else if (authService.getAuthUser().isAuth === 'false' && this.protectedUrl.indexOf(this._lastRoute.url.split('/')[1]) !== -1) {
+    else if (this._lastRoute!=null&&authService.getAuthUser().isAuth === 'false' && this.protectedUrl.indexOf(this._lastRoute.url.split('/')[1]) !== -1) {
+      console.log("i route it " +this._lastRoute.url);
       router.navigate(['/', 'login']);
       return false;
     }

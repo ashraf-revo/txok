@@ -23,7 +23,6 @@ export class BaseComponent implements OnInit {
   ngOnInit() {
     this._userService.currentUser().subscribe(it => {
       this._authService.setAuth(it, 'true');
-      this._router.navigate(['/home']);
     }, it => this._authService.setAuth(null, 'false'));
   }
 }

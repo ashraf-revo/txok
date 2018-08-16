@@ -13,6 +13,12 @@ import {AuthService} from './Services/auth.service';
 import {UserService} from './Services/user.service';
 import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { BaseInComponent } from './Views/base-in/base-in.component';
+import { BaseOutComponent } from './Views/base-out/base-out.component';
+import { SignupComponent } from './Views/signup/signup.component';
+import { ProfileComponent } from './Views/profile/profile.component';
+import { AccountEditComponent } from './Views/account-edit/account-edit.component';
+import { NavComponent } from './Component/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import {FormsModule} from '@angular/forms';
     HomeComponent,
     LoginComponent,
     BaseComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    BaseInComponent,
+    BaseOutComponent,
+    SignupComponent,
+    ProfileComponent,
+    AccountEditComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

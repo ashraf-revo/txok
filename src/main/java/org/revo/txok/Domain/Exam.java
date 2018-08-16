@@ -15,7 +15,7 @@ public class Exam {
     private Date createdDate = new Date();
     private String title;
     @CreatedBy
-    private String createdBy;
+    private String userId;
 
     public String getId() {
         return id;
@@ -41,11 +41,11 @@ public class Exam {
         this.title = title;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

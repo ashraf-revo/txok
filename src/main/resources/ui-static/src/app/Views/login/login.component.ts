@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../Domain/user';
 import {UserService} from '../../Services/user.service';
 import {AuthService} from '../../Services/auth.service';
+import {mergeMap} from "rxjs/internal/operators";
 
 @Component({
   selector: 't-login',
@@ -18,9 +19,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._userService.login(this.user).subscribe(it => {
-      this._authService.setAuth(it, 'true');
-    });
-
+    this._userService.login(this.user)
+      .pipe(mergeMap(it => this._userService.currentUser()))
+      .subscribe(it => {
+        this._authService.setAuth(it, 'true');
+      });
   }
 }

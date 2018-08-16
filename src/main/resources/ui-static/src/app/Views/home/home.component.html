@@ -1,1 +1,112 @@
-<a [routerLink]="['/','login']">login</a>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a [routerLink]="['/','home']">Home</a></li>
+</ol>
+<div class="row">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="card-header bg-white">
+        <div class="media">
+          <div class="media-body">
+            <h4 class="card-title">Courses</h4>
+            <p class="card-subtitle">Your recent courses</p>
+          </div>
+          <div class="media-right">
+            <a class="btn btn-sm btn-primary" href="student-my-courses.html">My courses</a>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group list-group-fit mb-0">
+        <li class="list-group-item">
+          <div class="media align-items-center">
+            <div class="media-body">
+              <a href="student-take-course.html">Basics of HTML</a>
+            </div>
+            <div class="media-right">
+              <div class="text-center">
+                <div class="mb-1">
+                  <span class="badge badge-pill badge-primary">25%</span>
+                </div>
+                <div class="progress" style="width: 100px;">
+                  <div class="progress-bar bg-primary" role="progressbar"
+                       style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                       aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header bg-white">
+        <div class="media">
+          <div class="media-body">
+            <h4 class="card-title">Quizzes</h4>
+            <p class="card-subtitle">Your Performance</p>
+          </div>
+          <div class="media-right">
+            <a class="btn btn-sm btn-primary" href="#">Quiz results</a>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group list-group-fit mb-0">
+        <li class="list-group-item">
+          <div class="media align-items-center">
+            <div class="media-body">
+              <a href="student-quiz-results.html">Title of quiz goes here?</a><br>
+              <small>Course: <a href="student-take-course.html">Basics of HTML</a></small>
+            </div>
+            <div class="media-right text-center">
+              <h4 class="mb-0">5.8</h4>
+              <span class="text-muted-light">Good</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-header bg-white">
+        <div class="media">
+          <div class="media-body">
+            <h4 class="card-title">Forum Activity</h4>
+            <p class="card-subtitle">Latest forum topics &amp; comments</p>
+          </div>
+          <div class="media-right">
+            <a class="btn btn-sm btn-primary" href="student-forum.html"> <i
+              class="material-icons">keyboard_arrow_right</i></a>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group list-group-fit">
+        <li class="list-group-item forum-thread">
+          <div class="media align-items-center">
+            <div class="media-left">
+              <div class="forum-icon-wrapper" id="forum-item-1">
+                <a href="student-forum-thread.html" class="forum-thread-icon">
+                  <i class="material-icons">description</i>
+                </a>
+                <a href="#public-profile" class="forum-thread-user">
+                  <img src="assets/images/people/50/guy-7.jpg" alt="" width="20"
+                       class="rounded-circle">
+                </a>
+              </div>
+              <span class="mdk-tooltip js-mdk-tooltip" data-for="forum-item-1">
+                replied by Brian S.
+              </span>
+            </div>
+            <div class="media-body">
+              <a href="student-forum-thread.html">Am I learning the right way?</a>
+            </div>
+            <div class="media-right">
+              <div style="width:80px; text-align: right;">
+                <small class="text-muted-light">5 min ago</small>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

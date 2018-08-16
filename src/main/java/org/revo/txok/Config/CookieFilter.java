@@ -16,7 +16,7 @@ public class CookieFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         Mono<CsrfToken> token = exchange.getAttributeOrDefault(CsrfToken.class.getName(), Mono.empty());
         return token.flatMap(it -> {
-            exchange.getResponse().addCookie(ResponseCookie.from("X-CSRF-TOKEN", it.getToken()).build());
+            exchange.getResponse().addCookie(ResponseCookie.from("X-CSRF-TOKEN", it.getToken()).path("/").build());
             return chain.filter(exchange);
         });
 

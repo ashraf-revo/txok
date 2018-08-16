@@ -30,12 +30,14 @@ export class UserService {
   }
 
   logout(): Observable<Object> {
-    return this._http.get(this._defaultService + '/signout');
+    return this._http.post(this._defaultService.url + '/signout',{});
   }
 
   login(user: User): Observable<User> {
     let data: string = "username=" + user.username + "&password=" + user.password + "&remember-me=" + true;
 
-    return this._http.post<User>(this._defaultService.url + '/login', data, {headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})});
+    return this._http.post<User>(this._defaultService.url + '/login', data, {headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})})
+
+      ;
   }
 }

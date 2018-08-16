@@ -14,6 +14,4 @@ public interface UserService {
 
     Flux<User> save(List<User> users);
 
-
-    Flux<User> findAll();
 }

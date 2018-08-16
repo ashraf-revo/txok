@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.csrf.WebSessionServerCsrfTokenRepository;
+import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import reactor.core.publisher.Mono;
 
 @EnableWebFluxSecurity
@@ -21,9 +21,11 @@ public class Security {
 
     @Bean
     public SecurityWebFilterChain webFilterChain(ServerHttpSecurity http) {
-        http
+        http.exceptionHandling().authenticationEntryPoint((exchange, e) -> {
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
+        }).and()
                 .authorizeExchange()
-
                 .pathMatchers("/api/teacher", "/api/teacher/*/**").hasRole("TEACHER")
                 .pathMatchers("/api/student", "/api/student/*/**").hasRole("STUDENT")
                 .pathMatchers("/api/user", "/api/user/*/**").hasRole("ADMIN")
@@ -34,7 +36,7 @@ public class Security {
                 .loginPage("/login")
                 .authenticationFailureHandler((exchange, e) -> {
                     exchange.getExchange().getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-                    return exchange.getExchange().getResponse().setComplete();
+                    return Mono.empty();
                 })
                 .authenticationSuccessHandler((webFilterExchange, authentication) -> {
                     webFilterExchange.getExchange().getResponse().setStatusCode(HttpStatus.OK);
@@ -42,11 +44,10 @@ public class Security {
                 })
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-
-                .logoutHandler((exchange, authentication) -> {
+                .logoutUrl("/signout")
+                .logoutSuccessHandler((exchange, authentication) -> {
                     exchange.getExchange().getResponse().setStatusCode(HttpStatus.OK);
-                    return exchange.getExchange().getResponse().setComplete();
+                    return Mono.empty();
                 });
         return http.build();
     }
